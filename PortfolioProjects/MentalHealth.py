@@ -1,7 +1,7 @@
 import time 
 
-player_stats = {"Clarty": 5,
-                "Arsenal": []}
+player_stats = {"Energy": 5,
+                "Weapons": []}
 
 def slow_print(text):
     for char in text: 
@@ -14,9 +14,20 @@ def into():
     slow_print("In this game, you will be asked a series of questions to assess your mental health.")
     slow_print("Please answer honestly to get the most accurate results.")
     slow_print("Let's get started!")
+    input("Enter to start the game...")
+    anxietyLevel()
+    
 
 def anxietyLevel():
-    pass
+    slow_print("")
+    slow_print("")
+
+    while True:
+        pass
+    
+
+
+    
 
 def depresssionLevel():
     pass
@@ -25,7 +36,8 @@ def stressLevel():
     pass
 
 def check_status():
-    pass
+    print(f"\nCurrent Clarity: {player_stats['energy']}")
+    print(f"Tools: {', '.join(player_stats['weapons']) if player_stats['weapons'] else 'None'}")
 
 def main():
     into()
@@ -33,3 +45,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
