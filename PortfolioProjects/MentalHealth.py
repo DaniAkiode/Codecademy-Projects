@@ -6,29 +6,41 @@ player_stats = {"Energy": 5,
 def slow_print(text):
     for char in text: 
         print(char, end='', flush=True)
-        time.sleep(0.07)
+        time.sleep(0.01)
     print("\n")  
 
 def into():
     slow_print("Welcome to the Mental Health Game!")
-    slow_print("In this game, you will be asked a series of questions to assess your mental health.")
-    slow_print("Please answer honestly to get the most accurate results.")
+    slow_print("In this game, you will explore the inner world of you emotions.")
+    slow_print("Prepare to be spiritually awakened. Starting with the Anxiety level")
     slow_print("Let's get started!")
     input("Enter to start the game...")
     anxietyLevel()
     
 
 def anxietyLevel():
-    slow_print("")
-    slow_print("")
-
+    slow_print("You're about to give a presentation.")
+    slow_print("Your heart is pounding, your palms are sweaty, and you keep thinking, “What if I mess up? What if they laugh? What if I forget everything?”")
+    slow_print("Everyone’s eyes are on you, and it feels like you can’t breathe properly")
+    choice = input("What do you do?\n1. Take a deep breath and remind yourself that it's okay to be nervous.\n2. Avoid the presentation altogether.\n3. Practice your speech in front of a mirror.\n")
     while True:
-        pass
+        match choice:
+            case "1":
+                slow_print("You take a deep breath and remind yourself that it's okay to be nervous.")
+                player_stats["Energy"] += 1
+                break
+            case "2":
+                slow_print("You decide to avoid the presentation altogether.")
+                player_stats["Energy"] -= 1
+                break
+            case "3":
+                slow_print("You practice your speech in front of a mirror.")
+                player_stats["Energy"] += 2
+                break
+            case _:
+                slow_print("Invalid choice. Please try again.")
+                choice = input("What do you do?")
     
-
-
-    
-
 def depresssionLevel():
     pass
 
