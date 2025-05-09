@@ -42,7 +42,26 @@ def anxietyLevel():
                 choice = input("What do you do?")
     
 def depresssionLevel():
-    pass
+    slow_print("You wake up and feel like you can't get out of bed.")
+    slow_print("The world feels heavy, and you just want to hide away from everything.")
+    choice = input("What do you do?\n1. Stay in bed all day.\n2. Call a friend and talk about how you're feeling.\n3. Go for a walk outside.\n")
+    while True:
+        match choice:
+            case "1":
+                slow_print("You stay in bed all day.")
+                player_stats["Energy"] -= 2
+                break
+            case "2":
+                slow_print("You call a friend and talk about how you're feeling.")
+                player_stats["Energy"] += 1
+                break
+            case "3":
+                slow_print("You go for a walk outside.")
+                player_stats["Energy"] += 2
+                break
+            case _:
+                slow_print("Invalid choice. Please try again.")
+                choice = input("What do you do?")
 
 def stressLevel():
     pass
