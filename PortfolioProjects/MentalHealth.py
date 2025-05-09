@@ -64,7 +64,26 @@ def depresssionLevel():
                 choice = input("What do you do?")
 
 def stressLevel():
-    pass
+    slow_print("You have a lot of work to do, and the deadline is approaching.")
+    slow_print("You feel overwhelmed and don't know where to start.")
+    choice = input("What do you do?\n1. Procrastinate and hope it goes away.\n2. Make a to-do list and tackle one task at a time.\n3. Ask for help from a colleague.\n")
+    while True:
+        match choice:
+            case "1":
+                slow_print("You procrastinate and hope it goes away.")
+                player_stats["Energy"] -= 2
+                break
+            case "2":
+                slow_print("You make a to-do list and tackle one task at a time.")
+                player_stats["Energy"] += 2
+                break
+            case "3":
+                slow_print("You ask for help from a colleague.")
+                player_stats["Energy"] += 1
+                break
+            case _:
+                slow_print("Invalid choice. Please try again.")
+                choice = input("What do you do?")
 
 def check_status():
     print(f"\nCurrent Clarity: {player_stats['energy']}")
