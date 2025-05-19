@@ -16,8 +16,6 @@ def into():
     slow_print("Let's get started!")
     input("Enter to start the game...")
     
-    
-
 def anxietyLevel():
     slow_print("You're about to give a presentation.")
     slow_print("Your heart is pounding, your palms are sweaty, and you keep thinking, “What if I mess up? What if they laugh? What if I forget everything?”")
