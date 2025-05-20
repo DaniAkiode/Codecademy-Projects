@@ -13,7 +13,7 @@
             <!--Heading -->
             <h2>Spam Detection Application</h2>
             <!--Form for adding email/text message for prediction -->
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 <label for="message">Enter Email Here For Spam Detection</label>
                 <textarea id = "message" name="message" rows="4" cols="50"></textarea>
                 <br>
@@ -29,6 +29,11 @@
                 <label for="checkbox">
                     <input type="checkbox" name="SaveToDatabase" checked> Do you want your message saved to the Database for evaluation?
                 </label>
+                <br>
+
+                <label for="file">Upload File:</label>
+                <br>
+                <input type="file" id="file" name="file">
                 <br>
                 <button type="submit">Check</button>
             </form>
