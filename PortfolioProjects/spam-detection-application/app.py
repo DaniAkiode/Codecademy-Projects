@@ -15,12 +15,18 @@ def index():
 
     if request.method == "POST":  # Use POST to send data to the server
         user_input = request.form.get("message")  # Get user input from html file
+        uploaded_file = request.files.get("file")
         selected_model = request.form.get("model")  # Get selected model from html
         save_to_database = request.form.get("SaveToDatabase") # Get option to save data from html file 
+        
+        if not user_input and uploaded_file and uploaded_file.filename.endswith(".txt"):
+            # If a file is uploaded, read its content
+            user_input = uploaded_file.read().decode("utf-8")
+        
         if user_input:  # Make sure input is not empty
             result = predict_message(user_input, selected_model)  # Get prediction with chosen model
-            if save_to_database: #If user want to save message to database 
-                insert_result(user_input, result, selected_model) # Send results to database if check box has been ticked 
+            if save_to_database:  # If user want to save message to database
+                insert_result(user_input, result, selected_model)  # Send results to database if check box has been ticked
         else:
             result = "No message entered!"  # send message if input is empty
     
