@@ -32,6 +32,9 @@ for filename in os.listdir(source_folder):
                 # Create the folder if it doesn't exist
                 os.makedirs(dest_folder, exist_ok=True)
                 # Move the file
-                shutil.move(file_path, os.path.join(dest_folder, filename))
-                print(f"Moved {filename} to {dest_folder}")
+                try:
+                    shutil.move(file_path, os.path.join(dest_folder, filename))
+                    print(f"Moved {filename} to {dest_folder}")
+                except PermissionError:
+                    print(f"Skipping {filename}: File is currently in use.")
                 break  # Stop after finding the right category
