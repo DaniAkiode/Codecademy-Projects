@@ -12,7 +12,10 @@ file_types = {
     "Videos": [".mp4", ".mkv", ".avi", ".mov"],
     "Music": [".mp3", ".wav", ".aac"],
     "Scripts": [".py", ".js", ".html", ".css"],
-    "Archives": [".zip", ".rar", ".7z"]
+    "Archives": [".zip", ".rar", ".7z"],
+    "Installers": [".exe", ".msi"],
+    "Spreadsheets": [".xls", ".xlsx", ".csv"],
+    "Presentations": [".ppt", ".pptx"]
 }
 
 # Loop through all files in the source folder
