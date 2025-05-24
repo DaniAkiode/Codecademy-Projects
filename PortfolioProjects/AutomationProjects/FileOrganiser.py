@@ -20,7 +20,7 @@ file_types = {
     "Miscellaneous": [".json", ".xml", ".log", ".md"],
     "Databases": [".db", ".sqlite", ".sql"],
     "Diagrams": [".drawio", ".vsdx", ".svg",".cairis"],
-    "Wireshark": [".pcap", ".pcapng"],
+    "Wireshark": [".pcap", ".pcapng"]
 }
 
 # Loop through all files in the source folder
