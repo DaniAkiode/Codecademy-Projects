@@ -19,7 +19,7 @@ file_types = {
     "Virtual_Machines": [".vmdk", ".vdi", ".ova", ".vbox"],
     "Miscellaneous": [".json", ".xml", ".log", ".md"],
     "Databases": [".db", ".sqlite", ".sql"],
-    "Diagrams": [".drawio", ".vsdx", ".svg"],
+    "Diagrams": [".drawio", ".vsdx", ".svg",".cairis"],
     "Wireshark": [".pcap", ".pcapng"],
 }
 
