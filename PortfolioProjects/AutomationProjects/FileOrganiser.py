@@ -7,15 +7,20 @@ source_folder = "C:\\Users\\danny\\Downloads"  # Update this to your actual path
 
 # Define file types and their associated extensions
 file_types = {
-    "Documents": [".pdf", ".docx", ".txt"],
+    "Documents": [".pdf", ".docx", ".txt", ".doc", ".odt"],
     "Images": [".jpg", ".jpeg", ".png", ".gif"],
     "Videos": [".mp4", ".mkv", ".avi", ".mov"],
     "Music": [".mp3", ".wav", ".aac"],
-    "Scripts": [".py", ".js", ".html", ".css"],
+    "Scripts": [".py", ".js", ".html", ".css", ".ipynb"],
     "Archives": [".zip", ".rar", ".7z"],
-    "Installers": [".exe", ".msi"],
+    "Installers": [".exe", ".msi", ".pyc"],
     "Spreadsheets": [".xls", ".xlsx", ".csv"],
-    "Presentations": [".ppt", ".pptx"]
+    "Presentations": [".ppt", ".pptx"],
+    "Virtual_Machines": [".vmdk", ".vdi", ".ova", ".vbox"],
+    "Miscellaneous": [".json", ".xml", ".log", ".md"],
+    "Databases": [".db", ".sqlite", ".sql"],
+    "Diagrams": [".drawio", ".vsdx", ".svg"],
+    "Wireshark": [".pcap", ".pcapng"],
 }
 
 # Loop through all files in the source folder
