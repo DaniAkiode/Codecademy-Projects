@@ -41,6 +41,22 @@
             {% if result %}
                 <h3>Result: {{ result }}</h3>
             {% endif %}
+            <hr>
+            <h3>Bulk Spam Detection</h3>
+            <form action="/bulk_predict" method="POST" enctype="multipart/form-data">
+                <label for="csv_file">Upload CSV with 'message' column:</label><br>
+                <input type="file" name="csv_file" accept=".csv" required><br><br>
+                
+                <label for="bulk_model">Select Model for Bulk Detection:</label>
+                <select name="bulk_model">
+                    <option value="naive_bayes">Naive Bayes</option>
+                    <option value="logic_regression">Logical Regression</option>
+                    <option value="KNeighborsClassifier">KNN</option>
+                </select> <br>
+                <button type="submit">Upload & Detect</button>
+            </form>
+
+
         </div>
     </body>
 </html>

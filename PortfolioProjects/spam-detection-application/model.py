@@ -21,9 +21,25 @@ def predict_message(text, model_name="naive_bayes"):  # declare predict_ functio
     else:# if the prediction is ham send the message below 
         return "This is Ham! Keep the email! (Could be important!)"
 
+def predict_bulk_messages(messages, model_name="naive_bayes"):
+    if model_name not in models:
+        return ["Invalid model selected!"] * len(messages)  # Return error message for each message if model is not valid
+
+    vectorizer, model = models[model_name]  # Get selected model and vectorizer
+    messages_vector = vectorizer.transform(messages)  # Convert all messages to numerical format
+    predictions = model.predict(messages_vector)  # Make predictions for all messages
 
 
+    # Convert numeric predctions to human-readable format
 
+    readable = []
+    for pred in predictions:
+        if pred == 1:
+            readable.append("This is Spam! Delete Email at ONCE!")
+        else:
+            readable.append("This is Ham! Keep the email! (Could be important!)")
+
+    return readable  # Return list of predictions for each message
 
 
 
