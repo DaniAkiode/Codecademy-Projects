@@ -40,7 +40,7 @@
             <!--Jinja code from python, Checks if the result variable/textbox has a , otherwise it will send "No Message entered" -->
             {% if result %}
                 <h3>Result: {{ result }}</h3>
-                {% if threat_score !="N/A" %}
+                {% if threat_score !="N/A" and threat_score is not none %}
                     {% if threat_score < 30 %}
                         <p class="low-risk"><strong>Threat Score:</strong> {{ threat_score }} (Low Risk)</p>
                     {% elif threat_score < 70 %}
@@ -75,11 +75,13 @@
                     <tr>
                         <th>Message</th>
                         <th>Prediction</th>
+                        <th>Threat Score</th>
                     </tr>
                     {% for row in preview_data %}
                         <tr>
                             <td>{{ row.message }}</td>
                             <td>{{ row.Prediction }}</td>
+                            <td>{{ row.ThreatScore }}</td>
                         </tr>
                     {% endfor %}
                 </table>

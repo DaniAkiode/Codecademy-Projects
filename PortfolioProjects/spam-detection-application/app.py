@@ -42,6 +42,7 @@ def bulk_predict():
     file = request.files.get("csv_file")  # Get the uploaded file
     selected_model = request.form.get("bulk_model", "naive_bayes")  
     preview_data = None 
+    
 
     if not file or not file.filename.endswith(".csv"):
         return render_template("index.html", 
@@ -57,6 +58,7 @@ def bulk_predict():
 
         predictions = predict_bulk_messages(df["message"], selected_model)  # Get predictions for all messages
         df["Prediction"] = predictions  # Add predictions to DataFrame
+        df["threat_score"] = df["Prediction"].apply(lambda pred: 100 if pred == "spam" else 0)
 
         output_file = f"static/bulk_results_{uuid.uuid4().hex}.csv"  # Create a unique output file name
         df.to_csv(output_file, index=False)  # Save DataFrame to CSV
