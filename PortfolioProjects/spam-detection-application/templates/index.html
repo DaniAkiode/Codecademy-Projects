@@ -55,7 +55,29 @@
                 </select> <br>
                 <button type="submit">Upload & Detect</button>
             </form>
+            {% if bulk_error %}
+                <p style="color:red;">{{ bulk_error }}</p>
+            {% endif %}
 
+            {% if preview_data %}
+                <h4>Preview (First 10 Rows)</h4>
+                <table border="1" cellpadding="5" cellspacing="0">
+                    <tr>
+                        <th>Message</th>
+                        <th>Prediction</th>
+                    </tr>
+                    {% for row in preview_data %}
+                        <tr>
+                            <td>{{ row.message }}</td>
+                            <td>{{ row.Prediction }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <br>
+                {% if bulk_csv_file %}
+                    <a href="{{ url_for('static', filename=bulk_csv_file.split('static/')[-1]) }}" download>Download Full Results as CSV</a>
+                {% endif %}
+            {% endif %}
 
         </div>
     </body>

@@ -37,29 +37,40 @@ def index():
 @app.route("/bulk_predict", methods=["POST"])  
 def bulk_predict():
     file = request.files.get("csv_file")  # Get the uploaded file
-    selected_model = request.form.get("bulk_model")
+    selected_model = request.form.get("bulk_model", "naive_bayes")  
+    preview_data = None 
 
     if not file or not file.filename.endswith(".csv"):
-        return "Please upload a valid CSV file."
+        return render_template("index.html", 
+                               bulk_error="Please upload a valid CSV file with a 'message' column.")
+    
     
     try:
         df = pd.read_csv(file)  
         if "message" not in df.columns:
-            return "CSV file must contain a 'message' column."
+            return render_template("index.html", 
+                                   bulk_error="CSV file must contain a 'message' column.")
         
-        predictions = predict_bulk_messages(df["message"], selected_model)  # Get predictions for all messages
-        df["prediction"] = predictions  # Add predictions to DataFrame
 
-        output_file = f"static/bulk_results_{uuid.uuid4()}.csv"  # Create a unique output file name
+        predictions = predict_bulk_messages(df["message"], selected_model)  # Get predictions for all messages
+        df["Prediction"] = predictions  # Add predictions to DataFrame
+
+        output_file = f"static/bulk_results_{uuid.uuid4().hex}.csv"  # Create a unique output file name
         df.to_csv(output_file, index=False)  # Save DataFrame to CSV
 
-        return send_file(output_file, as_attachment=True)  # Send the file for download
-    
+        preview_data = df.head(10).to_dict(orient="records")  # Preview first 10 rows for display
+        
+        print("PREVIEW DATA:", preview_data)
+        return render_template("index.html", 
+                               preview_data=preview_data, 
+                               bulk_csv_file=output_file)  # Send the file for download
+
     except Exception as e:
-        return f"Error processing file: {str(e)}"
+        return render_template("index.html", bulk_error=f"Error processing file: {str(e)}")  
 
 
     
+
 
     
 
