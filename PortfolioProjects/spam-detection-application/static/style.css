@@ -38,3 +38,7 @@ button:hover {
 }
 
 
+.low-risk { color: green;}
+.medium-risk { color: orange; }
+.high-risk { color: red; }
+

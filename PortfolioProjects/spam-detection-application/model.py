@@ -16,10 +16,22 @@ def predict_message(text, model_name="naive_bayes"):  # declare predict_ functio
     vectorizer, model = models[model_name]  # Get selected model, assigns "vectorizer" and "model" to the selected model along with the vectorzier being used   
     text_vector = vectorizer.transform([text])  # Convert text to numerical format for the program to understand the text 
     prediction = model.predict(text_vector)  # Make a prediction    
+    
+    try:
+        proba = model.predict_proba(text_vector)[0][1] 
+        spam_score = round(proba * 100, 2)
+    except:
+        spam_score = "N/A"
+
+
+    
+    
     if prediction == 1: #If the prediction is spam then send the message below 
-        return "This is Spam! Delete Email at ONCE!"
+        label = "This is Spam! Delete Email at ONCE!"
     else:# if the prediction is ham send the message below 
-        return "This is Ham! Keep the email! (Could be important!)"
+        label =  "This is Ham! Keep the email! (Could be important!)"
+
+    return label, spam_score  # Return label and spam score as a tuple
 
 def predict_bulk_messages(messages, model_name="naive_bayes"):
     if model_name not in models:

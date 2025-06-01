@@ -40,7 +40,17 @@
             <!--Jinja code from python, Checks if the result variable/textbox has a , otherwise it will send "No Message entered" -->
             {% if result %}
                 <h3>Result: {{ result }}</h3>
+                {% if threat_score !="N/A" %}
+                    {% if threat_score < 30 %}
+                        <p class="low-risk"><strong>Threat Score:</strong> {{ threat_score }} (Low Risk)</p>
+                    {% elif threat_score < 70 %}
+                        <p class="medium-risk"><strong>Threat Score:</strong> {{ threat_score }} (Medium Risk)</p>
+                    {% else %}
+                        <p class="high-risk"><strong>Threat Score:</strong> {{ threat_score }} (High Risk)</p>
+                    {% endif %}
+                {% endif %}
             {% endif %}
+
             <hr>
             <h3>Bulk Spam Detection</h3>
             <form action="/bulk_predict" method="POST" enctype="multipart/form-data">

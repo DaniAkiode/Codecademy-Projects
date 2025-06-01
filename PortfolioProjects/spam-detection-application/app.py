@@ -13,6 +13,7 @@ create_table()
 @app.route("/", methods=["GET", "POST"])  # Handles requests in homepage
 def index():
     result = None  # Initialize result as None
+    threat_score = None
     selected_model = "naive_bayes"  # Default model
 
     if request.method == "POST":  # Use POST to send data to the server
@@ -26,13 +27,15 @@ def index():
             user_input = uploaded_file.read().decode("utf-8")
         
         if user_input:  # Make sure input is not empty
-            result = predict_message(user_input, selected_model)  # Get prediction with chosen model
+            result, threat_score = predict_message(user_input, selected_model)  # Get prediction with chosen model
             if save_to_database:  # If user want to save message to database
                 insert_result(user_input, result, selected_model)  # Send results to database if check box has been ticked
         else:
             result = "No message entered!"  # send message if input is empty
-    
-    return render_template("index.html", result=result, selected_model=selected_model)  # Pass index.html, result and  selected model through function to make web page dynamic 
+
+    return render_template("index.html", result=result, threat_score=threat_score, selected_model=selected_model)  # Pass index.html, result and  selected model through function to make web page dynamic
+
+
 
 @app.route("/bulk_predict", methods=["POST"])  
 def bulk_predict():
