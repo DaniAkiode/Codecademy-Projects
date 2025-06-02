@@ -42,14 +42,21 @@ def predict_bulk_messages(messages, model_name="naive_bayes"):
     predictions = model.predict(messages_vector)  # Make predictions for all messages
 
 
+    try:
+        probabilities = model.predict_proba(messages_vector)[:, 1]  # Get probabilities for spam class
+        threat_scores = [round(score * 100, 2 ) for score in probabilities]  # Convert probabilities to threat scores
+    except:
+        threat_scores = ["N/A"] * len(messages)
+
     # Convert numeric predctions to human-readable format
 
     readable = []
-    for pred in predictions:
+    for pred, score in zip(predictions, threat_scores):
         if pred == 1:
-            readable.append("This is Spam! Delete Email at ONCE!")
+            label = "This is Spam! Delete Email at ONCE!"
         else:
-            readable.append("This is Ham! Keep the email! (Could be important!)")
+            label = "This is Ham! Keep the email! (Could be important!)"
+        readable.append((label, score))
 
     return readable  # Return list of predictions for each message
 

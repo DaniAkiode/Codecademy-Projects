@@ -56,16 +56,15 @@ def bulk_predict():
                                    bulk_error="CSV file must contain a 'message' column.")
         
 
-        predictions = predict_bulk_messages(df["message"], selected_model)  # Get predictions for all messages
-        df["Prediction"] = predictions  # Add predictions to DataFrame
-        df["threat_score"] = df["Prediction"].apply(lambda pred: 100 if pred == "spam" else 0)
+        results = predict_bulk_messages(df["message"], selected_model)  # Get predictions for all messages
+        df["Prediction"] = [r[0] for r in results]  # Add predictions to DataFrame
+        df["ThreatScore"] = [r[1] for r in results]  # Add threat scores to DataFrame
 
         output_file = f"static/bulk_results_{uuid.uuid4().hex}.csv"  # Create a unique output file name
         df.to_csv(output_file, index=False)  # Save DataFrame to CSV
 
         preview_data = df.head(10).to_dict(orient="records")  # Preview first 10 rows for display
         
-        print("PREVIEW DATA:", preview_data)
         return render_template("index.html", 
                                preview_data=preview_data, 
                                bulk_csv_file=output_file)  # Send the file for download
