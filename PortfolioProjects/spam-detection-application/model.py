@@ -60,6 +60,27 @@ def predict_bulk_messages(messages, model_name="naive_bayes"):
 
     return readable  # Return list of predictions for each message
 
+def custom_spam_filter(text):
+    spam_keywords = [
+        "free", "winner", "claim", "urgent", "money", "guarantee", "prize",
+        "click here", "buy now", "act now", "limited time", "congratulations"
+    ]
+
+    score = 0
+    for keyword in spam_keywords:
+        if keyword in text.lower():
+            score += 20
+
+    if score >= 60:
+        return "This is Spam! (Custom Filter)" , score
+    elif score >= 30:
+        return "This is potentially Spam! (Custom Filter)", score
+    else:
+        return "This is Ham! (Custom Filter)", score
+    
+    
+
+
 
 
 """model = joblib.load("NBSpamDetector3.pkl") # Load model

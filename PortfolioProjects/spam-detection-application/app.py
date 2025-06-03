@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, send_file # for sending/getting data and 
-from model import predict_message, predict_bulk_messages # spam detection function
+from model import predict_message, predict_bulk_messages, custom_spam_filter # spam detection function
 from database import create_table, insert_result  # import database functions 
 import uuid # for generating unique IDs
 import pandas as pd  # for handling CSV files
@@ -27,12 +27,16 @@ def index():
             user_input = uploaded_file.read().decode("utf-8")
         
         if user_input:  # Make sure input is not empty
-            result, threat_score = predict_message(user_input, selected_model)  # Get prediction with chosen model
+            if selected_model == "custom_filter":
+                result, threat_score = custom_spam_filter(user_input)
+            else:
+                result, threat_score = predict_message(user_input, selected_model)  # Get prediction with chosen model
+            
             if save_to_database:  # If user want to save message to database
                 insert_result(user_input, result, selected_model)  # Send results to database if check box has been ticked
         else:
             result = "No message entered!"  # send message if input is empty
-
+        
     return render_template("index.html", result=result, threat_score=threat_score, selected_model=selected_model)  # Pass index.html, result and  selected model through function to make web page dynamic
 
 
