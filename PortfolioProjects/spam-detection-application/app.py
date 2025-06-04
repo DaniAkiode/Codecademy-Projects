@@ -79,8 +79,31 @@ def bulk_predict():
 
     
 
+@app.route("/dashboard")
+def dashboard():
+    import sqlite3
+    import pandas as pd
 
-    
+    conn = sqlite3.connect("spam_results_with_model.db")  # Connect to the database
+    df = pd.read_sql_query("SELECT prediction, timestamp FROM results", conn)
+    conn.close()  # Close the database connection
+
+    df["timestamp"] = pd.to_datetime(df["timestamp"])  # Convert timestamp to datetime format
+    df["date"] = df["timestamp"].dt.date
+
+    # Count spam vs ham per day 
+    trend_data = df.groupby(["date", "prediction"]).size().unstack(fill_value=0).reset_index()
+
+    # Format for chart.js 
+
+    dates = trend_data["date"].astype(str).tolist()  # Convert dates to string for JavaScript
+    spam_counts = trend_data.get("This is Spam! Delete Email at ONCE!", pd.Series([0]*len(dates))).tolist()  # Get spam counts
+    ham_counts = trend_data.get("This is Ham! Keep the email! (Could be important!)", pd.Series([0]*len(dates))).tolist()  # Get ham counts
+
+    return render_template("dashboard.html", dates=dates, 
+                           spam_counts=spam_counts, 
+                           ham_counts=ham_counts)  
+
 
 if __name__ == "__main__":  # Runs only when this file is executed directly
     app.run(debug=True)  # Enable debug mode
