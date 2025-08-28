@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ user.name}} - Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+        <h1>{{user.name}}</h1>
+        <h2>Career History</h2>
+        <ul>
+            {% for job in user.career_history %}
+                <li>{{ job.role}} at {{ job.company }} ({{ job.year }} )</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Portfolio</h2>
+        <ul>
+            {% for project in user.portfolio %}
+                <li><a href="{{ url_for('uploaded_file', filename=file) }}"> {{ file }}</a></li>
+            {% else %}
+                <li>No work uploaded yet.</li>
+            {% endfor %}
+        </ul>
+
+        <a href="{{ url_for('upload') }}">Upload new work</a>
+    </body>
+</html>
