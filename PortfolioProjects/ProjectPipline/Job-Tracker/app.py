@@ -10,11 +10,11 @@ def init_db():
     conn = sqlite3.connect("jobs.db")
     c = conn.cursor()
     c.execute("""CREATE TABLE IF NOT EXISTS jobs (
-              id INTEGER PRIMARY KEY AUTINCREMENT,
-              company TEXT NON NULL,
+              id INTEGER PRIMARY KEY AUTOINCREMENT,
+              company TEXT NOT NULL,
               position TEXT NOT NULL,
-              data_applied TEXT NOT NULL,
-              status TEXT DEFAULT 'pending
+              date_applied TEXT NOT NULL,
+              status TEXT DEFAULT 'Pending'
               )""")
     conn.commit()
     conn.close()
@@ -33,7 +33,7 @@ def add_job():
     if request.method == "POST":
         company = request.form["company"]
         position = request.form["position"]
-        date_applied = datetime.now().strtime("%Y-&m-%d")
+        date_applied = datetime.now().strftime("%Y-%m-%d")
 
         conn = sqlite3.connect("jobs.db")
         c = conn.cursor()
