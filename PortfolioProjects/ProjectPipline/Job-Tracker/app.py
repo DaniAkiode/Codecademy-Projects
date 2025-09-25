@@ -64,6 +64,15 @@ def update_job(job_id):
     return render_template("update_job.html", job=job)
 
 
+@app.route("/delete/<int:job_id>", methods=["POST"])
+def delete_job(job_id):
+    conn = sqlite3.connect("jobs.db")
+    c = conn.cursor()
+    c.execute("DELETE FROM jobs WHERE id = ?", (job_id,))
+    conn.commit()
+    conn.close()
+    return redirect("/")
+
 
 if __name__ == "__main__":
     init_db()
