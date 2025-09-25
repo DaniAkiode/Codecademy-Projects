@@ -44,17 +44,28 @@ def add_job():
         return redirect("/")
     return render_template("add_job.html")
 
-"""
+
 @app.route("/update/<int:job_id>", methods=["GET", "POST"])
-def update(job_id):
+def update_job(job_id):
     conn = sqlite3.connect("jobs.db")
     c = conn.cursor()
 
     if request.method == "POST":
-        new_status = re
+        new_status = request.form['status']
+        c.execute("UPDATE jobs SET status = ? WHERE id = ?", (new_status, job_id))
+        conn.commit()
+        conn.close()
+        return redirect("/")
+    
+    # Fetch job for form 
+    c.execute("SELECT * FROM jobs WHERE id = ?", (job_id,))
+    job = c.fetchone()
+    conn.close()
+    return render_template("update_job.html", job=job)
+
 
 
 if __name__ == "__main__":
     init_db()
     app.run(debug=True)
-"""
+

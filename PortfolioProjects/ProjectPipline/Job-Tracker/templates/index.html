@@ -19,7 +19,7 @@
                 <td>{{ job[1] }}</td>
                 <td>{{ job[2] }}</td>
                 <td>{{ job[3] }}</td>
-                <td>{{ job[4] }}</td>
+                <td>{{ job[4] }} <a href="{{ url_for('update_job', job_id=job[0]) }}">Update</a></td>
             </tr>
             {% endfor %}
         </table>
