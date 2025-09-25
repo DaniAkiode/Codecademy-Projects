@@ -1,4 +1,4 @@
-/* General reset */
+/* general reset */
 * {
     margin: 0;
     padding: 0;
@@ -30,7 +30,7 @@ h1, h2 {
     text-align: center;
 }
 
-/* Forms */
+/* Froms */
 form {
     display: flex;
     flex-direction: column;
@@ -71,7 +71,7 @@ button:hover {
     background: #2980b9;
 }
 
-/* Table */
+/* Table */ 
 table {
     width: 100%;
     border-collapse: collapse;
@@ -94,12 +94,13 @@ table tr:hover {
 }
 
 /* Links */
+
 a {
     color: #3498db;
     text-decoration: none;
     font-weight: 500;
 }
 
-a:hover {
+a:hover{
     text-decoration: underline;
 }
