@@ -6,6 +6,10 @@
     </head>
     <body>
         <div class="container">
+            <div class="navbar">
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('add_job') }}">Add Job</a>
+            </div>            
             <h1>Update Job Status</h1>
             <form method="POST">
                 <p><strong>Company:</strong> {{ job[1] }}</p>

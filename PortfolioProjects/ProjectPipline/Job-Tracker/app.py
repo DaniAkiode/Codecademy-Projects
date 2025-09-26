@@ -44,7 +44,6 @@ def add_job():
         return redirect("/")
     return render_template("add_job.html")
 
-
 @app.route("/update/<int:job_id>", methods=["GET", "POST"])
 def update_job(job_id):
     conn = sqlite3.connect("jobs.db")
@@ -62,7 +61,6 @@ def update_job(job_id):
     job = c.fetchone()
     conn.close()
     return render_template("update_job.html", job=job)
-
 
 @app.route("/delete/<int:job_id>", methods=["POST"])
 def delete_job(job_id):

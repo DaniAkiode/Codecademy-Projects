@@ -5,9 +5,12 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     </head>
     <body>
-        <div>
-            <h1>Job Applied</h1>
-            <a href="/add">Add Job</a>
+        <div class="container">
+            <div class="navbar">
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('add_job') }}">Add Job</a>
+            </div>
+            <h1>Job Applied</h1>            
             <table>
                 <tr>
                     <th>Company</th>
