@@ -50,8 +50,12 @@ def update_job(job_id):
     c = conn.cursor()
 
     if request.method == "POST":
-        new_status = request.form['status']
-        c.execute("UPDATE jobs SET status = ? WHERE id = ?", (new_status, job_id))
+        
+        company = request.form['company']
+        position = request.form['position']
+        status = request.form['status']
+        
+        c.execute("UPDATE jobs SET company = ?, position = ?, status = ? WHERE id = ?", (company, position, status, job_id))
         conn.commit()
         conn.close()
         return redirect("/")

@@ -10,11 +10,15 @@
                 <a href="{{ url_for('index') }}">Home</a>
                 <a href="{{ url_for('add_job') }}">Add Job</a>
             </div>            
-            <h1>Update Job Status</h1>
+            <h1>Update Job</h1>
             <form method="POST">
-                <p><strong>Company:</strong> {{ job[1] }}</p>
-                <p><strong>Postition:</strong> {{ job[2] }}</p>
-                <label for="status">Status</label>
+                <label for="company">Company:</label>
+                <input type="text" name="company" value="{{ job[1] }}" required>
+
+                <label for="company">Position:</label>
+                <input type="text" name="position" value="{{ job[2] }}" required>
+
+                <label for="status">Status:</label>
                 <select name="status" required>
                     <option value="Pending" {% if job[4] == "Pending" %}selected{% endif %}>Pending</option>
                     <option value="Interview" {% if job[4] == "Interview" %}selected{% endif %}>Interview</option>
