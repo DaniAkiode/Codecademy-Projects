@@ -33,6 +33,7 @@ def init_db():
 
 def send_email(company, position, recipient_email):
     sender_email = os.getenv("EMAIL_USER")
+    sender_pass = os.getenv("EMAIL_PASS")
 
     subject = f"Application for {position} at {company}"
     body = f"""
@@ -56,9 +57,9 @@ def send_email(company, position, recipient_email):
     msg.attach(MIMEText(body, "plain"))
 
     try:
-        with smtplib.SMTP("smtp.gmail.com", 587) as server:
+        with smtplib.SMTP("smtp.office365.com", 587) as server:
             server.starttls()
-            server.login(sender_email)
+            server.login(sender_email, sender_pass)
             server.sendmail(sender_email, recipient_email, msg.as_string())
         print("Email send successfully")
     except Exception as e:
@@ -86,7 +87,7 @@ def add_job():
 
         conn = sqlite3.connect("jobs.db")
         c = conn.cursor()
-        c.execute("INSERT INTO jobs (company, position, email, date_applied) VALUES (?, ?, ?, ?)", (company, position, date_applied))
+        c.execute("INSERT INTO jobs (company, position, email, date_applied) VALUES (?, ?, ?, ?)", (company, position, email, date_applied))
         conn.commit()
         conn.close()
 
