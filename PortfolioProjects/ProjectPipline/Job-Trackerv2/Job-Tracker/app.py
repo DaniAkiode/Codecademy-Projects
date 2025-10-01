@@ -2,6 +2,17 @@ from flask import Flask, render_template, request, redirect
 import sqlite3
 from datetime import datetime 
 
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+import os 
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
+
 app = Flask(__name__)
 
 # initialise DB if it does not exist 
@@ -13,11 +24,46 @@ def init_db():
               id INTEGER PRIMARY KEY AUTOINCREMENT,
               company TEXT NOT NULL,
               position TEXT NOT NULL,
+              email TEXT NOT NULL,
               date_applied TEXT NOT NULL,
               status TEXT DEFAULT 'Pending'
               )""")
     conn.commit()
     conn.close()
+
+def send_email(company, position, recipient_email):
+    sender_email = os.getenv("EMAIL_USER")
+
+    subject = f"Application for {position} at {company}"
+    body = f"""
+    Dear {company} Team,
+
+    I wanted to follow up and let you know that I have submitted my application for the {position} role at your company.
+
+    I look forward to hearing from you.
+
+    Best regards,
+    [Your Name]
+
+    """
+
+    # create message 
+
+    msg = MIMEMultipart()
+    msg["From"] = sender_email
+    msg["To"] = recipient_email
+    msg["Subject"] = subject
+    msg.attach(MIMEText(body, "plain"))
+
+    try:
+        with smtplib.SMTP("smtp.gmail.com", 587) as server:
+            server.starttls()
+            server.login(sender_email)
+            server.sendmail(sender_email, recipient_email, msg.as_string())
+        print("Email send successfully")
+    except Exception as e:
+        print("Error sending email", e)
+
 
 @app.route("/")
 def index():
@@ -33,13 +79,19 @@ def add_job():
     if request.method == "POST":
         company = request.form["company"]
         position = request.form["position"]
+        email = request.form["email"]
         date_applied = datetime.now().strftime("%Y-%m-%d")
+
+        # Save job in BD
 
         conn = sqlite3.connect("jobs.db")
         c = conn.cursor()
-        c.execute("INSERT INTO jobs (company, position, date_applied) VALUES (?, ?, ?)", (company, position, date_applied))
+        c.execute("INSERT INTO jobs (company, position, email, date_applied) VALUES (?, ?, ?, ?)", (company, position, date_applied))
         conn.commit()
         conn.close()
+
+        # Send follow-up email 
+        send_email(company, position, email)
 
         return redirect("/")
     return render_template("add_job.html")
