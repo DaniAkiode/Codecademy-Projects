@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>My Projects</h1>
+
+{% for project in projects %}
+<div class="project">
+    <h3>{{ project.title }}</h3>
+    <p>{{ project.desc }}</p>
+    <p><strong>Tech:</strong> {{ project.tech | join(', ' )}}</p>
+</div>
+{% endfor %}
+
+<a href="/" class="button">Back Home</a>
+{% endblock %}

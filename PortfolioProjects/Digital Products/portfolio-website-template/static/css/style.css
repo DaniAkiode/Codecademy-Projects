@@ -1,0 +1,95 @@
+/* Reset some default browser styles */
+
+body, h1, p, ul{
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+/* Background and text colors */
+body {
+  background-color: #0d1117;
+  color: #c9d1d9;
+  line-height: 1.6;
+}
+
+/* Navbar */
+nav {
+  background-color: #161b22;
+  padding: 1rem 2rem;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  border-bottom: 1px solid #30363d;
+}
+
+nav a {
+  color: #58a6ff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: #1f6feb;
+}
+
+/* Main content */
+main {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Headings */
+h1 {
+  color: #f0f6fc;
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Paragraphs */
+p {
+  font-size: 1.1rem;
+  color: #c9d1d9;
+  margin-bottom: 1.5rem;
+}
+
+/* Project cards */
+.project {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.project:hover {
+  transform: translateY(-3px);
+  border-color: #58a6ff;
+}
+
+.project h3 {
+  color: #f0f6fc;
+}
+
+.project p {
+  color: #8b949e;
+  font-size: 0.95rem;
+}
+
+/* Links */
+a.button {
+  display: inline-block;
+  background-color: #238636;
+  color: white;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+a.button:hover {
+  background-color: #2ea043;
+}
