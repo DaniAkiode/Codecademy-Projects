@@ -1,0 +1,4 @@
+[
+    {"title": "Spam Detector", "tech": ["Python", "ML"], "desc": "Detects spam using AI."},
+    {"titel": "Portfolio Website", "tech": ["Flask", "HTML"], "desc": "Personal developer website."}
+]
