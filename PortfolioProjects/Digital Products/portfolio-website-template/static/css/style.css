@@ -93,3 +93,36 @@ a.button {
 a.button:hover {
   background-color: #2ea043;
 }
+
+/* --- Light Mode --- */
+body.light {
+  background-color: #f6f8fa;
+  color: #222;
+}
+
+body.light nav {
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+body.light nav a {
+  color: #0366d6;
+}
+
+body.light nav a:hover {
+  color: #005cc5;
+}
+
+body.light button {
+  border: 1px solid #0366d6;
+  color: #0366d6;
+}
+
+body.light .project {
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+body.light .project:hover {
+  border-color: #0366d6;
+}
