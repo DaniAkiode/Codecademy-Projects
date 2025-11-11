@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 255 255 255;
+  --fg: 17 24 39;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  color: rgb(var(--fg));
+  background: rgb(var(--bg));
+}
+
+.container-prose p {
+  @apply text-gray-600 leading-relaxed;
+}
+
+.button-primary {
+  @apply inline-flex items-center justify-center rounded-md bg-brand px-5 py-2.5 text-white font-medium hover:bg-brand-dark transition-colors;
+}
