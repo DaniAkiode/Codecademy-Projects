@@ -1,0 +1,159 @@
+:root {
+    --bg-main: #0e0e0e;
+    --bg-card: #151515;
+    --bg-input: #1c1c1c;
+
+    --text-primary: #ffffff;
+    --text-secondary: #b5b5b5;
+
+    --accent: #ff6a2b;
+    --accent-hover: #ff824d;
+
+    --border-soft: rgba(255,255,255,0.08);
+    --glow: rgba(255,106,43,0.25);
+}
+
+/* Global */
+body {
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background: radial-gradient(circle at top, #1a1a1a, var(--bg-main));
+    color: var(--text-primary);
+    margin: 0;
+    padding: 60px 0;
+    text-align: center;
+}
+
+/* Container Card */
+.container {
+    background: var(--bg-card);
+    width: 55%;
+    margin: auto;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow:
+        0 0 0 1px var(--border-soft),
+        0 20px 60px rgba(0,0,0,0.6);
+}
+
+/* Headings */
+h2 {
+    font-size: 42px;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+/* Labels */
+label {
+    display: block;
+    text-align: left;
+    margin-top: 20px;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+/* Inputs */
+textarea,
+select,
+input[type="file"] {
+    width: 100%;
+    background: var(--bg-input);
+    color: var(--text-primary);
+    border: 1px solid var(--border-soft);
+    border-radius: 10px;
+    padding: 14px;
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+textarea {
+    resize: none;
+}
+
+/* Checkbox */
+input[type="checkbox"] {
+    accent-color: var(--accent);
+    margin-right: 6px;
+}
+
+/* Buttons */
+button {
+    background: var(--accent);
+    color: black;
+    margin-top: 25px;
+    padding: 14px 22px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 0 transparent;
+}
+
+button:hover {
+    background: var(--accent-hover);
+    box-shadow: 0 0 20px var(--glow);
+    transform: translateY(-1px);
+}
+
+/* Result text */
+h3 {
+    margin-top: 30px;
+}
+
+/* Risk indicators */
+.low-risk {
+    color: #3ddc97;
+}
+
+.medium-risk {
+    color: #ffb347;
+}
+
+.high-risk {
+    color: #ff4d4d;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background: var(--bg-input);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border-soft);
+    font-size: 14px;
+}
+
+th {
+    color: var(--text-secondary);
+    text-align: left;
+}
+
+/* Links */
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Divider */
+hr {
+    margin: 40px 0;
+    border: none;
+    border-top: 1px solid var(--border-soft);
+}

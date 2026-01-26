@@ -3,15 +3,16 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='newstyle.css') }}">
         <title>Spam Detection Application</title>
     </head>
     <!--Website Interface-->
-    <body>
+    <body class="dark">
         <!--Container for holding the Heading and the form -->
         <div class="container">
             <!--Heading -->
-            <h2>Spam Detection Application</h2>
+            <h2>Spam Detection</h2>
+            <p class="subtitle">AI-powered email & message analysis</p>
 
             <!--Form for adding email/text message for prediction -->
             <form method="post" action="/">
